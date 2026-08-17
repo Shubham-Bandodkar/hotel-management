@@ -1,0 +1,63 @@
+<div class="search-container">
+
+  <h2>Hotel Search</h2>
+
+  <div class="search-box">
+    <input
+      type="text"
+      [(ngModel)]="searchTerm"
+      placeholder="Search hotel by name"/>
+
+    <button (click)="searchHotels()">
+      Search
+    </button>
+  </div>
+
+  <div *ngIf="errorMessage" class="error">
+    {{ errorMessage }}
+  </div>
+
+  <div *ngIf="loading">
+    Loading hotels...
+  </div>
+
+<div class="hotel-list">
+
+  <div
+    class="hotel-row"
+    *ngFor="let hotel of paginatedHotels">
+
+    <a
+      [routerLink]="['/hotels', hotel.id, 'home']">
+      {{ hotel.name }}
+    </a>
+
+    <span>{{ hotel.provider }}</span>
+
+    <span>{{ hotel.basicInfo.location }}</span>
+
+  </div>
+
+</div>
+
+  <div class="pagination">
+
+  <button
+    (click)="previousPage()"
+    [disabled]="currentPage === 1">
+    Previous
+  </button>
+
+  <span>
+    Page {{ currentPage }} of {{ totalPages }}
+  </span>
+
+  <button
+    (click)="nextPage()"
+    [disabled]="currentPage === totalPages">
+    Next
+  </button>
+
+</div>
+
+</div>

@@ -1,0 +1,146 @@
+[
+  {
+    "id": 1,
+    "name": "Taj Palace Goa",
+    "provider": "Taj Hotels",
+    "address": {
+      "street": "Dona Paula",
+      "state": "Goa",
+      "country": "India",
+      "pincode": "403004",
+      "email": "info@tajgoa.com",
+      "phone": "+91 832 663 3636"
+    },
+    "basicInfo": {
+      "shortName": "TPG",
+      "serviceId": 1001,
+      "hotelType": "Accommodation",
+      "defaultCurrency": "INR",
+      "location": "Goa"
+    },
+    "coordinates": {
+      "latitude": 15.4562,
+      "longitude": 73.8108
+    },
+    "imageUrl": "assets/images/taj-goa.jpg",
+    "statistics": {
+      "lastUsed": "2026-08-10",
+      "upcomingConfirmed": 10,
+      "upcomingRequest": 3,
+      "nextBookingDate": "2026-08-25",
+      "openComplaints": 2,
+      "totalComplaints": 10,
+      "amountToBePaid": 30000
+    },
+    "bookings": [
+      { "month": "Jan", "count": 30 },
+      { "month": "Feb", "count": 50 },
+      { "month": "Mar", "count": 70 },
+      { "month": "Apr", "count": 45 },
+      { "month": "May", "count": 60 },
+      { "month": "Jun", "count": 80 },
+      { "month": "Jul", "count": 70 },
+      { "month": "Aug", "count": 90 },
+      { "month": "Sep", "count": 100 },
+      { "month": "Oct", "count": 70 },
+      { "month": "Nov", "count": 50 },
+      { "month": "Dec", "count": 90 }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "ITC Gardenia Bangalore",
+    "provider": "ITC Hotels",
+    "address": {
+      "street": "1, Residency Road",
+      "state": "Karnataka",
+      "country": "India",
+      "pincode": "560025",
+      "email": "info.gardenia@itchotels.com",
+      "phone": "+91 80 2211 9898"
+    },
+    "basicInfo": {
+      "shortName": "IGB",
+      "serviceId": 1002,
+      "hotelType": "Accommodation",
+      "defaultCurrency": "INR",
+      "location": "Bangalore"
+    },
+    "coordinates": {
+      "latitude": 12.9716,
+      "longitude": 77.5946
+    },
+    "imageUrl": "assets/images/itc-gardenia.jpg",
+    "statistics": {
+      "lastUsed": "2026-08-12",
+      "upcomingConfirmed": 18,
+      "upcomingRequest": 5,
+      "nextBookingDate": "2026-08-22",
+      "openComplaints": 1,
+      "totalComplaints": 7,
+      "amountToBePaid": 45000
+    },
+    "bookings": [
+      { "month": "Jan", "count": 45 },
+      { "month": "Feb", "count": 55 },
+      { "month": "Mar", "count": 65 },
+      { "month": "Apr", "count": 50 },
+      { "month": "May", "count": 75 },
+      { "month": "Jun", "count": 85 },
+      { "month": "Jul", "count": 95 },
+      { "month": "Aug", "count": 110 },
+      { "month": "Sep", "count": 105 },
+      { "month": "Oct", "count": 90 },
+      { "month": "Nov", "count": 70 },
+      { "month": "Dec", "count": 100 }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Taj West End Bangalore",
+    "provider": "Taj Hotels",
+    "address": {
+      "street": "Race Course Road",
+      "state": "Karnataka",
+      "country": "India",
+      "pincode": "560001",
+      "email": "info.westend@tajhotels.com",
+      "phone": "+91 80 6660 5660"
+    },
+    "basicInfo": {
+      "shortName": "TWB",
+      "serviceId": 1003,
+      "hotelType": "Accommodation",
+      "defaultCurrency": "INR",
+      "location": "Bangalore"
+    },
+    "coordinates": {
+      "latitude": 12.9846,
+      "longitude": 77.5848
+    },
+    "imageUrl": "assets/images/taj-west-end.jpg",
+    "statistics": {
+      "lastUsed": "2026-08-11",
+      "upcomingConfirmed": 14,
+      "upcomingRequest": 4,
+      "nextBookingDate": "2026-08-27",
+      "openComplaints": 2,
+      "totalComplaints": 8,
+      "amountToBePaid": 38000
+    },
+    "bookings": [
+      { "month": "Jan", "count": 35 },
+      { "month": "Feb", "count": 48 },
+      { "month": "Mar", "count": 60 },
+      { "month": "Apr", "count": 52 },
+      { "month": "May", "count": 68 },
+      { "month": "Jun", "count": 72 },
+      { "month": "Jul", "count": 80 },
+      { "month": "Aug", "count": 95 },
+      { "month": "Sep", "count": 88 },
+      { "month": "Oct", "count": 75 },
+      { "month": "Nov", "count": 62 },
+      { "month": "Dec", "count": 85 }
+    ]
+  }
+]
