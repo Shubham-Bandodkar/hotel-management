@@ -1,0 +1,628 @@
+.home-dashboard {
+  width: 100%;
+}
+
+
+/* =========================
+   SUMMARY CARDS
+   ========================= */
+
+.summary-cards {
+  display: grid;
+
+  grid-template-columns:
+    repeat(6, minmax(150px, 1fr));
+
+  gap: 16px;
+
+  margin-bottom: 24px;
+}
+
+
+.summary-card {
+  position: relative;
+
+  min-height: 110px;
+
+  background: #ffffff;
+
+  border: 1px solid #e5e5e5;
+
+  border-radius: 3px;
+
+  box-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.08);
+
+  padding: 18px;
+
+  overflow: hidden;
+}
+
+
+/* TOP BLUE LINE */
+
+.summary-card::before {
+  content: '';
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+  right: 0;
+
+  height: 5px;
+
+  background: #007ea7;
+}
+
+
+.card-title {
+  margin-top: 8px;
+
+  font-size: 13px;
+
+  color: #6b7a86;
+
+  font-weight: 500;
+
+  line-height: 1.4;
+}
+
+
+.card-value {
+  margin-top: 14px;
+
+  font-size: 20px;
+
+  font-weight: 700;
+
+  color: #2f3a40;
+
+  white-space: nowrap;
+}
+
+
+/* =========================
+   CHART + MAP LAYOUT
+   ========================= */
+
+.dashboard-content {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 2fr)
+    minmax(300px, 1fr);
+
+  gap: 24px;
+}
+
+
+/* =========================
+   DASHBOARD PANELS
+   ========================= */
+
+.dashboard-panel {
+  position: relative;
+
+  background: #ffffff;
+
+  border: 1px solid #e5e5e5;
+
+  border-radius: 3px;
+
+  box-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.08);
+
+  overflow: hidden;
+}
+
+
+.dashboard-panel::before {
+  content: '';
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+  right: 0;
+
+  height: 5px;
+
+  background: #007ea7;
+}
+
+
+.panel-header {
+  padding: 22px 24px 16px;
+
+  border-bottom: 1px solid #eeeeee;
+}
+
+
+.panel-header h3 {
+  margin: 0;
+
+  font-size: 17px;
+
+  font-weight: 600;
+
+  color: #37474f;
+}
+
+
+/* =========================
+   CHART
+   ========================= */
+
+.chart-panel {
+  min-height: 430px;
+}
+
+
+.chart-wrapper {
+  display: flex;
+
+  padding:
+    30px
+    25px
+    0
+    15px;
+
+  height: 320px;
+}
+
+
+/* Y AXIS */
+
+.y-axis {
+  width: 40px;
+
+  height: 250px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: space-between;
+
+  align-items: flex-end;
+
+  padding-right: 10px;
+
+  font-size: 11px;
+
+  color: #7b8790;
+}
+
+
+/* CHART AREA */
+
+.chart-area {
+  position: relative;
+
+  flex: 1;
+
+  height: 250px;
+
+  border-left: 1px solid #dcdcdc;
+
+  border-bottom: 1px solid #dcdcdc;
+}
+
+
+/* GRID LINES */
+
+.grid-line {
+  position: absolute;
+
+  left: 0;
+  right: 0;
+
+  border-top:
+    1px solid #edf0f2;
+}
+
+
+.line-100 {
+  top: 0;
+}
+
+
+.line-80 {
+  top: 20%;
+}
+
+
+.line-60 {
+  top: 40%;
+}
+
+
+.line-40 {
+  top: 60%;
+}
+
+
+.line-20 {
+  top: 80%;
+}
+
+
+.line-0 {
+  bottom: 0;
+}
+
+
+/* BARS */
+
+.bars-container {
+  position: relative;
+
+  z-index: 2;
+
+  height: 100%;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(12, 1fr);
+
+  gap: 8px;
+
+  align-items: end;
+
+  padding:
+    0
+    12px;
+}
+
+
+.bar-item {
+  height: 100%;
+
+  position: relative;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: flex-end;
+
+  align-items: center;
+
+  padding-bottom: 25px;
+}
+
+
+.bar-wrapper {
+  height: 100%;
+
+  width: 100%;
+
+  display: flex;
+
+  align-items: flex-end;
+
+  justify-content: center;
+}
+
+
+.booking-bar {
+  width: 65%;
+
+  min-height: 3px;
+
+  background: #007ea7;
+
+  border-radius:
+    2px
+    2px
+    0
+    0;
+
+  cursor: pointer;
+
+  transition:
+    height 0.3s ease,
+    opacity 0.2s ease;
+}
+
+
+.booking-bar:hover {
+  opacity: 0.8;
+}
+
+
+.month-label {
+  position: absolute;
+
+  bottom: 5px;
+
+  font-size: 11px;
+
+  color: #6b7780;
+}
+
+/*
+  Place each month correctly
+*/
+
+.bar-item {
+  position: relative;
+}
+
+.bar-item .month-label {
+  bottom: -25px;
+}
+
+
+.chart-year {
+  text-align: center;
+
+  margin-top: 5px;
+
+  font-size: 13px;
+
+  color: #6b7780;
+}
+
+
+/* =========================
+   MAP
+   ========================= */
+
+.map-panel {
+  min-height: 430px;
+}
+
+
+.map-placeholder {
+  position: relative;
+
+  height: 365px;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      45deg,
+      #eef2ef 25%,
+      transparent 25%
+    ),
+
+    linear-gradient(
+      -45deg,
+      #eef2ef 25%,
+      transparent 25%
+    ),
+
+    linear-gradient(
+      45deg,
+      transparent 75%,
+      #eef2ef 75%
+    ),
+
+    linear-gradient(
+      -45deg,
+      transparent 75%,
+      #eef2ef 75%
+    );
+
+  background-size:
+    40px 40px;
+
+  background-position:
+    0 0,
+    0 20px,
+    20px -20px,
+    -20px 0px;
+
+  background-color: #dfe8df;
+}
+
+
+/* Fake Roads */
+
+.map-placeholder::before {
+  content: '';
+
+  position: absolute;
+
+  width: 140%;
+
+  height: 45px;
+
+  background: rgba(255, 255, 255, 0.8);
+
+  top: 45%;
+
+  left: -20%;
+
+  transform: rotate(-20deg);
+
+  box-shadow:
+    0 0 0 1px #d4d4d4;
+}
+
+
+.map-placeholder::after {
+  content: '';
+
+  position: absolute;
+
+  width: 45px;
+
+  height: 140%;
+
+  background: rgba(255, 255, 255, 0.8);
+
+  top: -20%;
+
+  left: 48%;
+
+  transform: rotate(20deg);
+
+  box-shadow:
+    0 0 0 1px #d4d4d4;
+}
+
+
+/* MAP CONTROLS */
+
+.map-controls {
+  position: absolute;
+
+  z-index: 5;
+
+  top: 15px;
+
+  left: 15px;
+
+  display: flex;
+
+  flex-direction: column;
+}
+
+
+.map-controls button {
+  width: 34px;
+
+  height: 34px;
+
+  border: 1px solid #ccc;
+
+  background: white;
+
+  font-size: 20px;
+
+  cursor: pointer;
+}
+
+
+.map-type {
+  position: absolute;
+
+  z-index: 5;
+
+  top: 15px;
+
+  right: 15px;
+
+  padding:
+    7px
+    12px;
+
+  background: white;
+
+  border: 1px solid #ccc;
+
+  cursor: pointer;
+
+  font-size: 12px;
+}
+
+
+.fullscreen-btn {
+  position: absolute;
+
+  z-index: 5;
+
+  right: 15px;
+
+  bottom: 15px;
+
+  width: 34px;
+
+  height: 34px;
+
+  border: 1px solid #ccc;
+
+  background: white;
+
+  cursor: pointer;
+
+  font-size: 18px;
+}
+
+
+/* LOCATION PIN */
+
+.location-pin {
+  position: absolute;
+
+  z-index: 10;
+
+  top: 45%;
+
+  left: 50%;
+
+  transform:
+    translate(-50%, -50%);
+
+  font-size: 38px;
+}
+
+
+/* COORDINATES */
+
+.coordinates {
+  position: absolute;
+
+  z-index: 5;
+
+  bottom: 15px;
+
+  left: 15px;
+
+  background: rgba(255, 255, 255, 0.9);
+
+  padding:
+    6px
+    10px;
+
+  font-size: 11px;
+
+  color: #555;
+}
+
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 1400px) {
+
+  .summary-cards {
+    grid-template-columns:
+      repeat(3, 1fr);
+  }
+
+}
+
+
+@media (max-width: 1000px) {
+
+  .dashboard-content {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+
+@media (max-width: 700px) {
+
+  .summary-cards {
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
+
+}
+
+
+@media (max-width: 480px) {
+
+  .summary-cards {
+    grid-template-columns: 1fr;
+  }
+
+}

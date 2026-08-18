@@ -1,30 +1,297 @@
-<div>
+<div
+  class="home-dashboard"
+  *ngIf="hotel">
 
-  <h2>Hotel Overview</h2>
+  <!-- =========================
+       SUMMARY CARDS
+       ========================= -->
 
-  <p>
-    <strong>Hotel:</strong>
-    {{ hotel.name }}
-  </p>
+  <div class="summary-cards">
 
-  <p>
-    <strong>Provider:</strong>
-    {{ hotel.provider }}
-  </p>
 
-  <p>
-    <strong>Location:</strong>
-    {{ hotel.basicInfo.location }}
-  </p>
+    <!-- Last Used -->
 
-  <p>
-    <strong>Hotel Type:</strong>
-    {{ hotel.basicInfo.hotelType }}
-  </p>
+    <div class="summary-card">
 
-  <p>
-    <strong>Currency:</strong>
-    {{ hotel.basicInfo.defaultCurrency }}
-  </p>
+      <div class="card-title">
+        Last Used
+      </div>
+
+      <div class="card-value">
+        {{ hotel.statistics.lastUsed }}
+      </div>
+
+    </div>
+
+
+    <!-- Upcoming Confirmed -->
+
+    <div class="summary-card">
+
+      <div class="card-title">
+        Upcoming Confirmed
+      </div>
+
+      <div class="card-value">
+        {{ hotel.statistics.upcomingConfirmed }}
+      </div>
+
+    </div>
+
+
+    <!-- Upcoming Request -->
+
+    <div class="summary-card">
+
+      <div class="card-title">
+        Upcoming Request
+      </div>
+
+      <div class="card-value">
+        {{ hotel.statistics.upcomingRequest }}
+      </div>
+
+    </div>
+
+
+    <!-- Next Booking -->
+
+    <div class="summary-card">
+
+      <div class="card-title">
+        Next Booking Date
+      </div>
+
+      <div class="card-value">
+        {{ hotel.statistics.nextBookingDate }}
+      </div>
+
+    </div>
+
+
+    <!-- Complaints -->
+
+    <div class="summary-card">
+
+      <div class="card-title">
+        Open ({{ hotel.statistics.totalComplaints }} Total)
+        Complaints
+      </div>
+
+      <div class="card-value">
+        {{ hotel.statistics.openComplaints }}
+        ({{ hotel.statistics.totalComplaints }})
+      </div>
+
+    </div>
+
+
+    <!-- To Be Paid -->
+
+    <div class="summary-card">
+
+      <div class="card-title">
+        To Be Paid
+      </div>
+
+      <div class="card-value">
+
+        {{ hotel.basicInfo.defaultCurrency }}
+        {{ hotel.statistics.amountToBePaid }}
+
+      </div>
+
+    </div>
+
+
+  </div>
+
+
+  <!-- =========================
+       CHART + MAP
+       ========================= -->
+
+  <div class="dashboard-content">
+
+
+    <!-- BOOKINGS OVERVIEW -->
+
+    <section class="dashboard-panel chart-panel">
+
+      <div class="panel-header">
+
+        <h3>
+          Bookings Overview
+        </h3>
+
+      </div>
+
+
+      <!-- CHART -->
+
+      <div class="chart-wrapper">
+
+
+        <!-- Y AXIS -->
+
+        <div class="y-axis">
+
+          <span>100</span>
+          <span>80</span>
+          <span>60</span>
+          <span>40</span>
+          <span>20</span>
+          <span>0</span>
+
+        </div>
+
+
+        <!-- CHART AREA -->
+
+        <div class="chart-area">
+
+
+          <!-- GRID LINES -->
+
+          <div class="grid-line line-100"></div>
+
+          <div class="grid-line line-80"></div>
+
+          <div class="grid-line line-60"></div>
+
+          <div class="grid-line line-40"></div>
+
+          <div class="grid-line line-20"></div>
+
+          <div class="grid-line line-0"></div>
+
+
+          <!-- BARS -->
+
+          <div class="bars-container">
+
+            <div
+              class="bar-item"
+              *ngFor="let booking of hotel.bookings">
+
+              <div class="bar-wrapper">
+
+                <div
+                  class="booking-bar"
+                  [style.height.%]="getBarHeight(booking.count)"
+                  [title]="booking.month + ': ' + booking.count">
+
+                </div>
+
+              </div>
+
+              <span class="month-label">
+
+                {{ booking.month }}
+
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+      </div>
+
+
+      <!-- YEAR -->
+
+      <div class="chart-year">
+
+        2023
+
+      </div>
+
+
+    </section>
+
+
+    <!-- =========================
+         MAP
+         ========================= -->
+
+    <section class="dashboard-panel map-panel">
+
+      <div class="panel-header">
+
+        <h3>
+          Map
+        </h3>
+
+      </div>
+
+
+      <div class="map-placeholder">
+
+
+        <!-- Zoom Controls -->
+
+        <div class="map-controls">
+
+          <button type="button">
+            +
+          </button>
+
+          <button type="button">
+            −
+          </button>
+
+        </div>
+
+
+        <!-- Map Type -->
+
+        <button
+          type="button"
+          class="map-type">
+
+          Map
+
+        </button>
+
+
+        <!-- Full Screen -->
+
+        <button
+          type="button"
+          class="fullscreen-btn">
+
+          ⛶
+
+        </button>
+
+
+        <!-- Location Marker -->
+
+        <div class="location-pin">
+
+          📍
+
+        </div>
+
+
+        <!-- Coordinates -->
+
+        <div class="coordinates">
+
+          {{ hotel.coordinates.latitude }},
+          {{ hotel.coordinates.longitude }}
+
+        </div>
+
+
+      </div>
+
+    </section>
+
+
+  </div>
 
 </div>

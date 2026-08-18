@@ -1,67 +1,206 @@
-<div class="hotel-details">
+<div
+  class="hotel-layout"
+  *ngIf="hotel">
 
-  <div class="hotel-header">
+  <!-- LEFT PANEL -->
 
-    <div>
-      <h1>{{ hotel.name }}</h1>
+  <aside class="left-panel">
+
+    <!-- HOTEL SECTION -->
+
+    <div class="hotel-section">
+
+      <div class="section-header">
+
+        <h3>Hotel</h3>
+
+        <button
+          type="button"
+          (click)="editHotel()">
+
+          Edit
+
+        </button>
+
+      </div>
+
+      <img
+        class="hotel-image"
+        [src]="hotel.imageUrl"
+        [alt]="hotel.name">
+
+      <h2>
+        {{ hotel.name }}
+      </h2>
 
       <p>
-        {{ hotel.provider }} ·
-        {{ hotel.basicInfo.location }}
+        {{ hotel.provider }}
       </p>
+
     </div>
 
-  </div>
 
-  <nav class="hotel-tabs">
+    <!-- ADDRESS SECTION -->
 
-    <a
-      [routerLink]="['home']"
-      routerLinkActive="active"
-      [routerLinkActiveOptions]="{ exact: true }">
-      Home
-    </a>
+    <div class="info-section">
 
-    <a
-      [routerLink]="['about']"
-      routerLinkActive="active">
-      About
-    </a>
+      <div class="section-header">
 
-    <a
-      [routerLink]="['classification']"
-      routerLinkActive="active">
-      Classification
-    </a>
+        <h3>Address</h3>
 
-    <a
-      [routerLink]="['products']"
-      routerLinkActive="active">
-      Products
-    </a>
+        <button
+          type="button"
+          (click)="editAddress()">
 
-    <a
-      [routerLink]="['terms']"
-      routerLinkActive="active">
-      Terms
-    </a>
+          Edit
 
-    <a
-      [routerLink]="['finance']"
-      routerLinkActive="active">
-      Finance
-    </a>
+        </button>
 
-    <a
-      [routerLink]="['notes']"
-      routerLinkActive="active">
-      Notes
-    </a>
+      </div>
 
-  </nav>
+      <p>
+        {{ hotel.address.street }}
+      </p>
 
-  <div class="hotel-content">
-    <router-outlet></router-outlet>
-  </div>
+      <p>
+        {{ hotel.address.state }},
+        {{ hotel.address.country }}
+      </p>
+
+      <p>
+        {{ hotel.address.pincode }}
+      </p>
+
+      <p>
+        {{ hotel.address.email }}
+      </p>
+
+      <p>
+        {{ hotel.address.phone }}
+      </p>
+
+    </div>
+
+
+    <!-- BASIC INFO -->
+
+    <div class="info-section">
+
+      <div class="section-header">
+
+        <h3>Basic Information</h3>
+
+        <button
+          type="button"
+          (click)="editBasicInfo()">
+
+          Edit
+
+        </button>
+
+      </div>
+
+      <p>
+        <strong>Short Name:</strong>
+        {{ hotel.basicInfo.shortName }}
+      </p>
+
+      <p>
+        <strong>Service ID:</strong>
+        {{ hotel.basicInfo.serviceId }}
+      </p>
+
+      <p>
+        <strong>Hotel Type:</strong>
+        {{ hotel.basicInfo.hotelType }}
+      </p>
+
+      <p>
+        <strong>Default Currency:</strong>
+        {{ hotel.basicInfo.defaultCurrency }}
+      </p>
+
+      <p>
+        <strong>Location:</strong>
+        {{ hotel.basicInfo.location }}
+      </p>
+
+    </div>
+
+  </aside>
+
+
+  <!-- RIGHT PANEL -->
+
+  <main class="right-panel">
+
+    <nav class="top-menu">
+
+      <a
+        routerLink="home"
+        routerLinkActive="active">
+
+        Home
+
+      </a>
+
+      <a
+        routerLink="about"
+        routerLinkActive="active">
+
+        About
+
+      </a>
+
+      <a
+        routerLink="classification"
+        routerLinkActive="active">
+
+        Classification
+
+      </a>
+
+      <a
+        routerLink="products"
+        routerLinkActive="active">
+
+        Products
+
+      </a>
+
+      <a
+        routerLink="terms"
+        routerLinkActive="active">
+
+        Terms
+
+      </a>
+
+      <a
+        routerLink="finance"
+        routerLinkActive="active">
+
+        Finance
+
+      </a>
+
+      <a
+        routerLink="notes"
+        routerLinkActive="active">
+
+        Notes
+
+      </a>
+
+    </nav>
+
+
+    <section class="page-content">
+
+      <router-outlet></router-outlet>
+
+    </section>
+
+  </main>
 
 </div>
