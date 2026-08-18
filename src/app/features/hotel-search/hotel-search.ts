@@ -1,21 +1,29 @@
-import { Component, OnInit } from '@angular/core';
-import { Hotel } from '../../core/models/hotel.model';
-import { HotelService } from '../../core/services/hotel';
+import {
+  ChangeDetectorRef,
+  Component,
+  OnInit
+} from '@angular/core';
+
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 
+import { Hotel } from '../../core/models/hotel.model';
+import { HotelService } from '../../core/services/hotel';
+
 @Component({
   selector: 'app-hotel-search',
+  standalone: true,
   imports: [
     CommonModule,
     FormsModule,
     RouterLink
   ],
   templateUrl: './hotel-search.html',
-  styleUrl: './hotel-search.css',
+  styleUrl: './hotel-search.css'
 })
 export class HotelSearch implements OnInit {
+
   hotels: Hotel[] = [];
   filteredHotels: Hotel[] = [];
   paginatedHotels: Hotel[] = [];
@@ -29,8 +37,9 @@ export class HotelSearch implements OnInit {
   errorMessage = '';
 
   constructor(
-    private hotelService: HotelService
-  ) { }
+    private hotelService: HotelService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
     this.loadHotels();
@@ -39,26 +48,36 @@ export class HotelSearch implements OnInit {
   loadHotels(): void {
 
     this.loading = true;
+    this.errorMessage = '';
 
     this.hotelService.getHotels().subscribe({
-      next: hotels => {
 
-        console.log('HOTELS FROM API:', hotels);
+      next: (hotels: Hotel[]) => {
 
         this.hotels = hotels;
-        this.filteredHotels = hotels;
+        this.filteredHotels = [...hotels];
+
+        this.currentPage = 1;
 
         this.updatePagination();
 
-        console.log('PAGINATED HOTELS:', this.paginatedHotels);
-
         this.loading = false;
+
+        // Ensures the UI updates after the async request.
+        this.cdr.detectChanges();
       },
-      error: error => {
 
-        this.errorMessage = error.message;
+      error: (error) => {
+
+        console.error('Failed to load hotels:', error);
+
+        this.errorMessage =
+          error.message ||
+          'Unable to load hotels. Please try again.';
+
         this.loading = false;
 
+        this.cdr.detectChanges();
       }
     });
   }
@@ -70,14 +89,21 @@ export class HotelSearch implements OnInit {
       .toLowerCase();
 
     if (!search) {
-      this.filteredHotels = this.hotels;
+
+      this.filteredHotels = [...this.hotels];
+
     } else {
-      this.filteredHotels = this.hotels.filter(hotel =>
-        hotel.name.toLowerCase().includes(search)
+
+      this.filteredHotels = this.hotels.filter(
+        hotel =>
+          hotel.name
+            .toLowerCase()
+            .includes(search)
       );
     }
 
     this.currentPage = 1;
+
     this.updatePagination();
   }
 
@@ -90,13 +116,18 @@ export class HotelSearch implements OnInit {
       startIndex + this.pageSize;
 
     this.paginatedHotels =
-      this.filteredHotels.slice(startIndex, endIndex);
+      this.filteredHotels.slice(
+        startIndex,
+        endIndex
+      );
   }
 
   nextPage(): void {
 
     if (this.currentPage < this.totalPages) {
+
       this.currentPage++;
+
       this.updatePagination();
     }
   }
@@ -104,14 +135,18 @@ export class HotelSearch implements OnInit {
   previousPage(): void {
 
     if (this.currentPage > 1) {
+
       this.currentPage--;
+
       this.updatePagination();
     }
   }
 
   get totalPages(): number {
+
     return Math.ceil(
-      this.filteredHotels.length / this.pageSize
+      this.filteredHotels.length /
+      this.pageSize
     );
   }
 }

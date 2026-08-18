@@ -2,62 +2,134 @@
 
   <h2>Hotel Search</h2>
 
+  <!-- Search -->
   <div class="search-box">
+
     <input
       type="text"
       [(ngModel)]="searchTerm"
-      placeholder="Search hotel by name"/>
+      placeholder="Search hotel by name"
+      (keyup.enter)="searchHotels()"
+    />
 
-    <button (click)="searchHotels()">
+    <button
+      type="button"
+      (click)="searchHotels()">
       Search
     </button>
+
   </div>
 
-  <div *ngIf="errorMessage" class="error">
-    {{ errorMessage }}
-  </div>
 
-  <div *ngIf="loading">
-    Loading hotels...
-  </div>
-
-<div class="hotel-list">
-
+  <!-- Loading -->
   <div
-    class="hotel-row"
-    *ngFor="let hotel of paginatedHotels">
+    class="loading"
+    *ngIf="loading">
 
-    <a
-      [routerLink]="['/hotels', hotel.id, 'home']">
-      {{ hotel.name }}
-    </a>
-
-    <span>{{ hotel.provider }}</span>
-
-    <span>{{ hotel.basicInfo.location }}</span>
+    Loading hotels...
 
   </div>
 
-</div>
 
-  <div class="pagination">
+  <!-- Error -->
+  <div
+    class="error"
+    *ngIf="errorMessage">
 
-  <button
-    (click)="previousPage()"
-    [disabled]="currentPage === 1">
-    Previous
-  </button>
+    {{ errorMessage }}
 
-  <span>
-    Page {{ currentPage }} of {{ totalPages }}
-  </span>
+  </div>
 
-  <button
-    (click)="nextPage()"
-    [disabled]="currentPage === totalPages">
-    Next
-  </button>
 
-</div>
+  <!-- Hotel List -->
+  <div
+    class="hotel-list"
+    *ngIf="!loading && paginatedHotels.length > 0">
+
+    <div
+      class="hotel-row"
+      *ngFor="let hotel of paginatedHotels">
+
+      <!-- Hotel Name -->
+      <a
+        class="hotel-name"
+        [routerLink]="['/hotels', hotel.id, 'home']">
+
+        {{ hotel.name }}
+
+      </a>
+
+
+      <!-- Provider -->
+      <span class="hotel-provider">
+
+        {{ hotel.provider }}
+
+      </span>
+
+
+      <!-- Location -->
+      <span class="hotel-location">
+
+        {{ hotel.basicInfo.location }}
+
+      </span>
+
+    </div>
+
+  </div>
+
+
+  <!-- No Results -->
+  <div
+    class="no-results"
+    *ngIf="
+      !loading &&
+      !errorMessage &&
+      paginatedHotels.length === 0
+    ">
+
+    No hotels found.
+
+  </div>
+
+
+  <!-- Pagination -->
+  <div
+    class="pagination"
+    *ngIf="
+      !loading &&
+      filteredHotels.length > 0
+    ">
+
+    <button
+      type="button"
+      (click)="previousPage()"
+      [disabled]="currentPage === 1">
+
+      Previous
+
+    </button>
+
+
+    <span>
+
+      Page {{ currentPage }}
+      of
+      {{ totalPages }}
+
+    </span>
+
+
+    <button
+      type="button"
+      (click)="nextPage()"
+      [disabled]="currentPage === totalPages">
+
+      Next
+
+    </button>
+
+  </div>
 
 </div>
