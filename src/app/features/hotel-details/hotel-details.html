@@ -1,1 +1,67 @@
-<p>hotel-details works!</p>
+<div class="hotel-details">
+
+  <div class="hotel-header">
+
+    <div>
+      <h1>{{ hotel.name }}</h1>
+
+      <p>
+        {{ hotel.provider }} ·
+        {{ hotel.basicInfo.location }}
+      </p>
+    </div>
+
+  </div>
+
+  <nav class="hotel-tabs">
+
+    <a
+      [routerLink]="['home']"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }">
+      Home
+    </a>
+
+    <a
+      [routerLink]="['about']"
+      routerLinkActive="active">
+      About
+    </a>
+
+    <a
+      [routerLink]="['classification']"
+      routerLinkActive="active">
+      Classification
+    </a>
+
+    <a
+      [routerLink]="['products']"
+      routerLinkActive="active">
+      Products
+    </a>
+
+    <a
+      [routerLink]="['terms']"
+      routerLinkActive="active">
+      Terms
+    </a>
+
+    <a
+      [routerLink]="['finance']"
+      routerLinkActive="active">
+      Finance
+    </a>
+
+    <a
+      [routerLink]="['notes']"
+      routerLinkActive="active">
+      Notes
+    </a>
+
+  </nav>
+
+  <div class="hotel-content">
+    <router-outlet></router-outlet>
+  </div>
+
+</div>
