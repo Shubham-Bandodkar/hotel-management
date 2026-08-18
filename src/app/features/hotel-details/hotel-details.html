@@ -2,11 +2,16 @@
   class="hotel-layout"
   *ngIf="hotel">
 
+  <!-- ====================================================== -->
   <!-- LEFT PANEL -->
+  <!-- ====================================================== -->
 
   <aside class="left-panel">
 
-    <!-- HOTEL SECTION -->
+
+    <!-- ==================================================== -->
+    <!-- HOTEL -->
+    <!-- ==================================================== -->
 
     <div class="hotel-section">
 
@@ -15,6 +20,7 @@
         <h3>Hotel</h3>
 
         <button
+          *ngIf="!editingHotel"
           type="button"
           (click)="editHotel()">
 
@@ -24,23 +30,81 @@
 
       </div>
 
-      <img
-        class="hotel-image"
-        [src]="hotel.imageUrl"
-        [alt]="hotel.name">
 
-      <h2>
-        {{ hotel.name }}
-      </h2>
+      <!-- HOTEL VIEW -->
 
-      <p>
-        {{ hotel.provider }}
-      </p>
+      <div *ngIf="!editingHotel">
+
+        <img
+          class="hotel-image"
+          [src]="hotel.imageUrl"
+          [alt]="hotel.name">
+
+        <h2>
+          {{ hotel.name }}
+        </h2>
+
+        <p>
+          {{ hotel.provider }}
+        </p>
+
+      </div>
+
+
+      <!-- HOTEL EDIT -->
+
+      <div
+        class="edit-form"
+        *ngIf="editingHotel">
+
+        <label>
+          Hotel Name
+        </label>
+
+        <input
+          type="text"
+          [(ngModel)]="editedHotelName">
+
+
+        <label>
+          Provider
+        </label>
+
+        <input
+          type="text"
+          [(ngModel)]="editedProvider">
+
+
+        <div class="edit-buttons">
+
+          <button
+            type="button"
+            class="save-button"
+            (click)="saveHotel()">
+
+            Save
+
+          </button>
+
+          <button
+            type="button"
+            class="cancel-button"
+            (click)="cancelHotelEdit()">
+
+            Cancel
+
+          </button>
+
+        </div>
+
+      </div>
 
     </div>
 
 
-    <!-- ADDRESS SECTION -->
+    <!-- ==================================================== -->
+    <!-- ADDRESS -->
+    <!-- ==================================================== -->
 
     <div class="info-section">
 
@@ -49,6 +113,7 @@
         <h3>Address</h3>
 
         <button
+          *ngIf="!editingAddress"
           type="button"
           (click)="editAddress()">
 
@@ -58,31 +123,125 @@
 
       </div>
 
-      <p>
-        {{ hotel.address.street }}
-      </p>
 
-      <p>
-        {{ hotel.address.state }},
-        {{ hotel.address.country }}
-      </p>
+      <!-- ADDRESS VIEW -->
 
-      <p>
-        {{ hotel.address.pincode }}
-      </p>
+      <div *ngIf="!editingAddress">
 
-      <p>
-        {{ hotel.address.email }}
-      </p>
+        <p>
+          {{ hotel.address.street }}
+        </p>
 
-      <p>
-        {{ hotel.address.phone }}
-      </p>
+        <p>
+          {{ hotel.address.state }},
+          {{ hotel.address.country }}
+        </p>
+
+        <p>
+          {{ hotel.address.pincode }}
+        </p>
+
+        <p>
+          {{ hotel.address.email }}
+        </p>
+
+        <p>
+          {{ hotel.address.phone }}
+        </p>
+
+      </div>
+
+
+      <!-- ADDRESS EDIT -->
+
+      <div
+        class="edit-form"
+        *ngIf="editingAddress">
+
+        <label>
+          Street
+        </label>
+
+        <input
+          type="text"
+          [(ngModel)]="editedAddress.street">
+
+
+        <label>
+          State
+        </label>
+
+        <input
+          type="text"
+          [(ngModel)]="editedAddress.state">
+
+
+        <label>
+          Country
+        </label>
+
+        <input
+          type="text"
+          [(ngModel)]="editedAddress.country">
+
+
+        <label>
+          Pincode
+        </label>
+
+        <input
+          type="text"
+          [(ngModel)]="editedAddress.pincode">
+
+
+        <label>
+          Email
+        </label>
+
+        <input
+          type="email"
+          [(ngModel)]="editedAddress.email">
+
+
+        <label>
+          Phone
+        </label>
+
+        <input
+          type="text"
+          [(ngModel)]="editedAddress.phone">
+
+
+        <div class="edit-buttons">
+
+          <button
+            type="button"
+            class="save-button"
+            (click)="saveAddress()">
+
+            Save
+
+          </button>
+
+          <button
+            type="button"
+            class="cancel-button"
+            (click)="cancelAddressEdit()">
+
+            Cancel
+
+          </button>
+
+        </div>
+
+      </div>
 
     </div>
 
 
-    <!-- BASIC INFO -->
+    <!-- ==================================================== -->
+    <!-- BASIC INFORMATION -->
+    <!-- ==================================================== -->
 
     <div class="info-section">
 
@@ -91,6 +250,7 @@
         <h3>Basic Information</h3>
 
         <button
+          *ngIf="!editingBasicInfo"
           type="button"
           (click)="editBasicInfo()">
 
@@ -100,37 +260,122 @@
 
       </div>
 
-      <p>
-        <strong>Short Name:</strong>
-        {{ hotel.basicInfo.shortName }}
-      </p>
 
-      <p>
-        <strong>Service ID:</strong>
-        {{ hotel.basicInfo.serviceId }}
-      </p>
+      <!-- BASIC INFO VIEW -->
 
-      <p>
-        <strong>Hotel Type:</strong>
-        {{ hotel.basicInfo.hotelType }}
-      </p>
+      <div *ngIf="!editingBasicInfo">
 
-      <p>
-        <strong>Default Currency:</strong>
-        {{ hotel.basicInfo.defaultCurrency }}
-      </p>
+        <p>
+          <strong>Short Name:</strong>
+          {{ hotel.basicInfo.shortName }}
+        </p>
 
-      <p>
-        <strong>Location:</strong>
-        {{ hotel.basicInfo.location }}
-      </p>
+        <p>
+          <strong>Service ID:</strong>
+          {{ hotel.basicInfo.serviceId }}
+        </p>
+
+        <p>
+          <strong>Hotel Type:</strong>
+          {{ hotel.basicInfo.hotelType }}
+        </p>
+
+        <p>
+          <strong>Default Currency:</strong>
+          {{ hotel.basicInfo.defaultCurrency }}
+        </p>
+
+        <p>
+          <strong>Location:</strong>
+          {{ hotel.basicInfo.location }}
+        </p>
+
+      </div>
+
+
+      <!-- BASIC INFO EDIT -->
+
+      <div
+        class="edit-form"
+        *ngIf="editingBasicInfo">
+
+        <label>
+          Short Name
+        </label>
+
+        <input
+          type="text"
+          [(ngModel)]="editedBasicInfo.shortName">
+
+
+        <label>
+          Service ID
+        </label>
+
+        <input
+          type="number"
+          [(ngModel)]="editedBasicInfo.serviceId">
+
+
+        <label>
+          Hotel Type
+        </label>
+
+        <input
+          type="text"
+          [(ngModel)]="editedBasicInfo.hotelType">
+
+
+        <label>
+          Default Currency
+        </label>
+
+        <input
+          type="text"
+          [(ngModel)]="editedBasicInfo.defaultCurrency">
+
+
+        <label>
+          Location
+        </label>
+
+        <input
+          type="text"
+          [(ngModel)]="editedBasicInfo.location">
+
+
+        <div class="edit-buttons">
+
+          <button
+            type="button"
+            class="save-button"
+            (click)="saveBasicInfo()">
+
+            Save
+
+          </button>
+
+          <button
+            type="button"
+            class="cancel-button"
+            (click)="cancelBasicInfoEdit()">
+
+            Cancel
+
+          </button>
+
+        </div>
+
+      </div>
 
     </div>
 
   </aside>
 
 
+  <!-- ====================================================== -->
   <!-- RIGHT PANEL -->
+  <!-- ====================================================== -->
 
   <main class="right-panel">
 

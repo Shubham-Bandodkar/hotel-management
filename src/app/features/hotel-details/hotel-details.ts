@@ -7,13 +7,16 @@ import {
 } from '@angular/router';
 
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 import { Hotel } from '../../core/models/hotel.model';
 
 @Component({
   selector: 'app-hotel-details',
+  standalone: true,
   imports: [
     CommonModule,
+    FormsModule,
     RouterLink,
     RouterLinkActive,
     RouterOutlet
@@ -29,9 +32,19 @@ export class HotelDetails implements OnInit {
   editingAddress = false;
   editingBasicInfo = false;
 
+  // Temporary values for editing
+  editedHotelName = '';
+  editedProvider = '';
+
+  editedAddress!: Hotel['address'];
+
+  editedBasicInfo!: Hotel['basicInfo'];
+
+
   constructor(
     private route: ActivatedRoute
   ) {}
+
 
   ngOnInit(): void {
 
@@ -40,16 +53,98 @@ export class HotelDetails implements OnInit {
 
   }
 
+
+  // ==========================================================
+  // HOTEL
+  // ==========================================================
+
   editHotel(): void {
+
+    this.editedHotelName =
+      this.hotel.name;
+
+    this.editedProvider =
+      this.hotel.provider;
+
     this.editingHotel = true;
   }
 
+
+  saveHotel(): void {
+
+    this.hotel.name =
+      this.editedHotelName;
+
+    this.hotel.provider =
+      this.editedProvider;
+
+    this.editingHotel = false;
+  }
+
+
+  cancelHotelEdit(): void {
+
+    this.editingHotel = false;
+  }
+
+
+  // ==========================================================
+  // ADDRESS
+  // ==========================================================
+
   editAddress(): void {
+
+    this.editedAddress = {
+      ...this.hotel.address
+    };
+
     this.editingAddress = true;
   }
 
+
+  saveAddress(): void {
+
+    this.hotel.address = {
+      ...this.editedAddress
+    };
+
+    this.editingAddress = false;
+  }
+
+
+  cancelAddressEdit(): void {
+
+    this.editingAddress = false;
+  }
+
+
+  // ==========================================================
+  // BASIC INFORMATION
+  // ==========================================================
+
   editBasicInfo(): void {
+
+    this.editedBasicInfo = {
+      ...this.hotel.basicInfo
+    };
+
     this.editingBasicInfo = true;
+  }
+
+
+  saveBasicInfo(): void {
+
+    this.hotel.basicInfo = {
+      ...this.editedBasicInfo
+    };
+
+    this.editingBasicInfo = false;
+  }
+
+
+  cancelBasicInfoEdit(): void {
+
+    this.editingBasicInfo = false;
   }
 
 }
