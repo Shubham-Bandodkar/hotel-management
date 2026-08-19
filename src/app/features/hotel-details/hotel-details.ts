@@ -32,7 +32,6 @@ export class HotelDetails implements OnInit {
   editingAddress = false;
   editingBasicInfo = false;
 
-  // Temporary values for editing
   editedHotelName = '';
   editedProvider = '';
 
@@ -53,10 +52,6 @@ export class HotelDetails implements OnInit {
 
   }
 
-
-  // ==========================================================
-  // HOTEL
-  // ==========================================================
 
   editHotel(): void {
 
@@ -88,9 +83,7 @@ export class HotelDetails implements OnInit {
   }
 
 
-  // ==========================================================
-  // ADDRESS
-  // ==========================================================
+
 
   editAddress(): void {
 
@@ -118,9 +111,6 @@ export class HotelDetails implements OnInit {
   }
 
 
-  // ==========================================================
-  // BASIC INFORMATION
-  // ==========================================================
 
   editBasicInfo(): void {
 
